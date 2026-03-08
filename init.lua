@@ -51,3 +51,9 @@ vim.keymap.set("n", "<C-j>", "<C-w>j", { desc = "Go to Lower Window" })
 vim.keymap.set("n", "<C-k>", "<C-w>k", { desc = "Go to Upper Window" })
 vim.keymap.set("n", "<C-l>", "<C-w>l", { desc = "Go to Right Window" })
 
+-- Mouse and Arrow keys disable
+vim.opt.mouse = ""
+vim.keymap.set("", "<up>", "<nop>", { noremap = true })
+vim.keymap.set("", "<down>", "<nop>", { noremap = true })
+vim.keymap.set("i", "<up>", "<nop>", { noremap = true })
+vim.keymap.set("i", "<down>", "<nop>", { noremap = true })
