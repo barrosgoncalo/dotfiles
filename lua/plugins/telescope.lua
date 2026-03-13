@@ -9,6 +9,7 @@ return {
       local builtin = require('telescope.builtin')
       vim.keymap.set('n', '<leader>ff', builtin.find_files, { desc = "Find Files" })
       vim.keymap.set('n', '<leader>fg', builtin.live_grep, { desc = "Search inside Files" })
+      vim.keymap.set('n', 'gi', require('telescope.builtin').lsp_implementations, {})
     end
   },
 }

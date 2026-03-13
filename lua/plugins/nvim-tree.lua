@@ -12,8 +12,10 @@ return {
           {
             "\\.class$",
             "\\.iml$",
+            "\\.DS_Store",
             "^out$",
-            "^target$"
+            "^target$",
+            "^.idea",
           },
           exclude = {},
         },
