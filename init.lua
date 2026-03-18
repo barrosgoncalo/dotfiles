@@ -39,6 +39,8 @@ vim.cmd([[colorscheme gruvbox]])
 
 --Show line numbers
 vim.opt.number = true
+--Show line relative numbers
+vim.opt.relativenumber = true
 
 --Indentation
 vim.opt.expandtab = true
@@ -63,4 +65,8 @@ vim.keymap.set("i", "<down>", "<nop>", { noremap = true })
 -- Spell checking
 vim.opt.spell = true
 -- Set language
-vim.opt.spelllang = { 'en_us' }
+vim.opt.spelllang = { 'en_us', 'pt_pt' }
+
+
+vim.env.PATH = vim.env.PATH .. ":/Library/TeX/texbin"
+vim.env.PATH = vim.env.PATH .. ":/opt/homebrew/bin:/usr/local/bin"
