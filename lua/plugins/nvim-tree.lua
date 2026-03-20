@@ -19,6 +19,8 @@ return {
           },
           exclude = {},
         },
+        -- keybinds
+        vim.keymap.set('n', '<C-n>', ':NvimTreeToggle<CR>')
       })
     end,
   },
