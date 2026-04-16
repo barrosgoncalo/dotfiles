@@ -3,6 +3,8 @@
 My personal macOS development environment configuration files for WezTerm, Neovim, and Zsh.
 
 ## Structure
+
+```bash
 ~/.dotfiles/
 ├── wezterm/
 │   └── wezterm.lua
@@ -10,6 +12,8 @@ My personal macOS development environment configuration files for WezTerm, Neovi
 │   └── ...
 └── zsh/
 └── .zshrc
+```
+
 ## Requirements
 
 Install dependencies with Homebrew:
