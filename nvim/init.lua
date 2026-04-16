@@ -43,11 +43,23 @@ vim.opt.number = true
 vim.opt.relativenumber = true
 
 --Indentation
-vim.opt.expandtab = true
+-- spaces a <Tab> counts
 vim.opt.tabstop = 4
-vim.opt.shiftwidth = 2
-vim.opt.smartindent = true
+
+-- spaces for (auto)indent
+vim.opt.shiftwidth = 4
+
+-- Convert tabs to spaces
+vim.opt.expandtab = true
+
+-- Backspace delete 4 spaces at once
 vim.opt.softtabstop = 4
+
+-- Copy indentation from the previous line when starting a new line
+vim.opt.autoindent = true
+
+vim.opt.smartindent = true
+
 
 -- Easy Window Navigation
 -- vim.keymap.set("n", "<C-h>", "<C-w>h", { desc = "Go to Left Window" })
@@ -70,3 +82,6 @@ vim.opt.spelllang = { 'en_us', 'pt_pt' }
 
 vim.env.PATH = vim.env.PATH .. ":/Library/TeX/texbin"
 vim.env.PATH = vim.env.PATH .. ":/opt/homebrew/bin:/usr/local/bin"
+
+-- Abbreviations __
+vim.keymap.set("i", "sout<Tab>", 'System.out.println();<Left><Left>')

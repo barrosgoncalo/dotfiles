@@ -45,9 +45,8 @@ return {
     lazy = false,
     priority = 1000,
     config = function()
-      -- These variables MUST be set before the colorscheme command
       vim.g.gruvbox_material_background = 'medium'
-      vim.g.gruvbox_material_foreground = 'material' -- This makes the text look "crisper"
+      vim.g.gruvbox_material_foreground = 'mix'
       vim.g.gruvbox_material_enable_italic = 1
 
       vim.cmd([[colorscheme gruvbox-material]])

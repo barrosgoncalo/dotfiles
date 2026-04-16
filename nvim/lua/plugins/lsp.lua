@@ -17,11 +17,16 @@ return {
         Lua = {},
       },
     })
+    vim.lsp.config("bufls", {})
+
     vim.lsp.enable('lua_ls')
     vim.lsp.enable("jdtls")
+    vim.lsp.enable("bufls")
+
     vim.diagnostic.config({
       virtual_text = true,
       update_in_insert = true,
+      underline = false,
     })
     vim.keymap.set('n', '<leader>ca', vim.lsp.buf.code_action, { desc = 'Code Actions' })
     vim.keymap.set('n', '<leader>rn', vim.lsp.buf.rename, { desc = 'LSP Rename' })
