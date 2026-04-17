@@ -22,7 +22,6 @@ if not vim.loop.fs_stat(lazypath) then
   })
 end
 vim.opt.rtp:prepend(lazypath)
-vim.opt.termguicolors = true
 
 -- ----------------------------------------------------------------------------------------------------------------------------------------------
 -- Plugins 
@@ -34,7 +33,7 @@ require("lazy").setup("plugins")
 -- ----------------------------------------------------------------------------------------------------------------------------------------------
 
 --Turn on the theme
-vim.o.background = "dark" -- change to "light" if you prefer light mode
+vim.o.background = "dark"
 vim.cmd([[colorscheme gruvbox]])
 
 --Show line numbers
