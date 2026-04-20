@@ -26,7 +26,7 @@ return {
     vim.diagnostic.config({
       virtual_text = true,
       update_in_insert = true,
-      underline = false,
+      underline = true,
     })
     vim.keymap.set('n', '<leader>ca', vim.lsp.buf.code_action, { desc = 'Code Actions' })
     vim.keymap.set('n', '<leader>rn', vim.lsp.buf.rename, { desc = 'LSP Rename' })

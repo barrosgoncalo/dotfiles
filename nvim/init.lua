@@ -70,8 +70,12 @@ vim.opt.smartindent = true
 vim.opt.mouse = ""
 vim.keymap.set("", "<up>", "<nop>", { noremap = true })
 vim.keymap.set("", "<down>", "<nop>", { noremap = true })
+vim.keymap.set("", "<left>", "<nop>", { noremap = true })
+vim.keymap.set("", "<right>", "<nop>", { noremap = true })
 vim.keymap.set("i", "<up>", "<nop>", { noremap = true })
 vim.keymap.set("i", "<down>", "<nop>", { noremap = true })
+vim.keymap.set("i", "<left>", "<nop>", { noremap = true })
+vim.keymap.set("i", "<right>", "<nop>", { noremap = true })
 
 -- Spell checking
 vim.opt.spell = true

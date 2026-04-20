@@ -6,6 +6,10 @@ config.default_prog = { '/bin/zsh', '-l' }
 
 -- theme
 config.color_scheme = "GruvboxDark"
+-- config.color_scheme = "Gruvbox Material (Gogh)"
+
+-- disable ligatures
+config.harfbuzz_features = { 'calt=0', 'clig=0', 'liga=0' }
 -- font
 config.font = wezterm.font("JetBrains Mono")
 -- disable tab bar
@@ -35,5 +39,8 @@ config.keys = {
 -- configure {} for European keyboard
 config.send_composed_key_when_left_alt_is_pressed = true
 config.send_composed_key_when_right_alt_is_pressed = true
+
+-- sound
+config.audible_bell = "Disabled"
 
 return config;
