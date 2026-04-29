@@ -1,4 +1,5 @@
 local wezterm = require 'wezterm';
+local act = wezterm.action
 local config = wezterm.config_builder();
 
 -- zsh
@@ -20,21 +21,28 @@ config.font_size = 14.0
 -- keys
 config.use_dead_keys = false
 config.keys = {
+    -- Split Horizontally
     {
         key = 'd',
         mods = 'CMD',
         action = wezterm.action.SplitHorizontal { domain = 'CurrentPaneDomain' },
     },
+    -- Split Vertically
     {
         key = 'd',
         mods = 'CMD|SHIFT',
         action = wezterm.action.SplitVertical { domain = 'CurrentPaneDomain' },
     },
+    -- Close Pane
     {
         key = 'w',
         mods = 'CMD',
         action = wezterm.action.CloseCurrentPane { confirm = true },
     },
+    -- Move tab left
+    { key = 'LeftArrow', mods = 'ALT|SHIFT', action = act.MoveTabRelative(-1) },
+    -- Move tab right
+    { key = 'RightArrow', mods = 'ALT|SHIFT', action = act.MoveTabRelative(1) },
 }
 -- configure {} for European keyboard
 config.send_composed_key_when_left_alt_is_pressed = true
