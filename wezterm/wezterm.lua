@@ -25,24 +25,32 @@ config.keys = {
     {
         key = 'd',
         mods = 'CMD',
-        action = wezterm.action.SplitHorizontal { domain = 'CurrentPaneDomain' },
+        action = act.SplitHorizontal { domain = 'CurrentPaneDomain' },
     },
     -- Split Vertically
     {
         key = 'd',
         mods = 'CMD|SHIFT',
-        action = wezterm.action.SplitVertical { domain = 'CurrentPaneDomain' },
+        action = act.SplitVertical { domain = 'CurrentPaneDomain' },
     },
     -- Close Pane
     {
         key = 'w',
         mods = 'CMD',
-        action = wezterm.action.CloseCurrentPane { confirm = true },
+        action = act.CloseCurrentPane { confirm = true },
     },
     -- Move tab left
-    { key = 'LeftArrow', mods = 'ALT|SHIFT', action = act.MoveTabRelative(-1) },
+    {
+        key = 'LeftArrow',
+        mods = 'ALT|SHIFT',
+        action = act.MoveTabRelative(-1)
+    },
     -- Move tab right
-    { key = 'RightArrow', mods = 'ALT|SHIFT', action = act.MoveTabRelative(1) },
+    {
+        key = 'RightArrow',
+        mods = 'ALT|SHIFT',
+        action = act.MoveTabRelative(1)
+    },
 }
 -- configure {} for European keyboard
 config.send_composed_key_when_left_alt_is_pressed = true
