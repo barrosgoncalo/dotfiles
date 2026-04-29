@@ -19,25 +19,42 @@ return {
             },
         })
         vim.lsp.config("jdtls", {
-            settings = {
-                java = {
-                    compiler = {
-                        problem = {
-                            forbiddenReference = "warning",
-                            missingSerialVersion = "warning",
-                            unusedLambdaParameter = "warning",
-                            uncheckedTypeOperation = "warning",
-                        }
-                    }
-                }
-            }
+            settings = {}
         })
+
+        vim.lsp.config("pylsp", {
+            settings = {
+                pylsp = {
+                    plugins = {
+                        -- formatter options
+                        black = { enabled = true },
+                        autopep8 = { enabled = false },
+                        yapf = { enabled = false },
+                        -- linter options
+                        pylint = { enabled = true, executable = "pylint" },
+                        pyflakes = { enabled = false },
+                        pycodestyle = { enabled = false },
+                        -- type checker
+                        pylsp_mypy = { enabled = true },
+                        -- auto-completion options
+                        jedi_completion = { fuzzy = true },
+                        -- import sorting
+                        pyls_isort = { enabled = true },
+                    },
+                },
+            },
+            flags = {
+                debounce_text_changes = 200,
+            },
+        })
+
         vim.lsp.config("bufls", {})
 
         -- enables
         vim.lsp.enable('lua_ls')
         vim.lsp.enable("jdtls")
         vim.lsp.enable("bufls")
+        vim.lsp.enable("pylsp")
 
         vim.diagnostic.config({
             virtual_text = true,
