@@ -39,7 +39,12 @@ return {
       },
       callback = function(args)
         vim.treesitter.start(args.buf)
-      end,
+        -- python specific
+        if args.match == "python" then
+          vim.bo[args.buf].syntax = "python"
+        end
+
+      end
     })
 
   end,
