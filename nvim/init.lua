@@ -12,14 +12,14 @@ vim.keymap.set('n', '<leader>tt', ':tabnew | term<CR>', { desc = 'Terminal in ne
 -- 1. Download and setup the 'lazy.nvim' plugin manager
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
-  vim.fn.system({
-    "git",
-    "clone",
-    "--filter=blob:none",
-    "https://github.com/folke/lazy.nvim.git",
-    "--branch=stable", -- latest stable release
-    lazypath,
-  })
+    vim.fn.system({
+        "git",
+        "clone",
+        "--filter=blob:none",
+        "https://github.com/folke/lazy.nvim.git",
+        "--branch=stable", -- latest stable release
+        lazypath,
+    })
 end
 vim.opt.rtp:prepend(lazypath)
 
@@ -29,7 +29,7 @@ vim.opt.rtp:prepend(lazypath)
 require("lazy").setup("plugins")
 
 -- ----------------------------------------------------------------------------------------------------------------------------------------------
--- Editor Setting (Looks & Feel)
+-- Editor Setting
 -- ----------------------------------------------------------------------------------------------------------------------------------------------
 
 --Turn on the theme
@@ -58,6 +58,14 @@ vim.opt.softtabstop = 4
 vim.opt.autoindent = true
 
 vim.opt.smartindent = true
+
+-- Language Indentation Specific Overrides
+-- PEP 8 double-indent override(python)
+vim.g.python_indent = {
+    open_paren = 'shiftwidth()',
+    continue = 'shiftwidth()',
+    closed_paren_align_last_line = false,
+}
 
 
 -- Easy Window Navigation
