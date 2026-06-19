@@ -22,6 +22,8 @@ return {
             settings = {}
         })
 
+        vim.lsp.config("ts_ls", {})
+
         vim.lsp.config("pylsp", {
             settings = {
                 pylsp = {
@@ -54,6 +56,7 @@ return {
         vim.lsp.enable('lua_ls')
         vim.lsp.enable("jdtls")
         vim.lsp.enable("bufls")
+        vim.lsp.enable("ts_ls")
         vim.lsp.enable("pylsp")
 
         vim.diagnostic.config({

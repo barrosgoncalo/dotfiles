@@ -44,6 +44,7 @@ return {
       -- Keymaps --
       vim.keymap.set('n', '<leader>ff', builtin.find_files, { desc = "Find Files" })
       vim.keymap.set('n', '<leader>fg', builtin.live_grep, { desc = "Search inside Files" })
+      vim.keymap.set('n', '<leader>fb', builtin.buffers, { desc = "Find Buffers" })
       vim.keymap.set('n', 'gi', require('telescope.builtin').lsp_implementations, {})
 
       -- Spelling Sugestions

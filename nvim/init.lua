@@ -96,3 +96,26 @@ vim.env.PATH = vim.env.PATH .. ":/opt/homebrew/bin:/usr/local/bin"
 
 -- Abbreviations __
 vim.keymap.set("i", "sout<Tab>", 'System.out.println();<Left><Left>')
+vim.keymap.set("i", "souf<Tab>", 'System.out.printf();<Left><Left>')
+
+
+vim.api.nvim_create_user_command('Scratch', function()
+    vim.cmd('vnew')
+    vim.bo.buftype = 'nofile'
+    vim.bo.bufhidden = 'hide'
+    vim.bo.swapfile = false
+
+    pcall(vim.api.nvim_buf_set_name, 0, "*Scratchpad*")
+
+    print("Persistent scratch buffer created!")
+end, {})
+
+-- ----------------------------------------------------------------------------------------------------------------------------------------------
+-- Filetype Associations (Custom Highlight Rules)
+-- ----------------------------------------------------------------------------------------------------------------------------------------------
+vim.filetype.add({
+  filename = {
+    ['firestore.rules'] = 'javascript',
+    ['storage.rules'] = 'javascript',
+  },
+})
