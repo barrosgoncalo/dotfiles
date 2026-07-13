@@ -1,14 +1,12 @@
 return {
   {
-
     "tpope/vim-fugitive",
     lazy = false,
-    keys = { -- Conflict split screen
+    keys = {
       { "<leader>gs", "<cmd>Gvdiffsplit!<cr>", desc = "Git Merge (3-way)" },
-      -- Conflict Resolution (Get from Left/Right)
-      { "<leader>gh", "<cmd>diffget //2<cr>", desc = "Git Accept Left (Local)" },
-      { "<leader>gl", "<cmd>diffget //3<cr>", desc = "Git Accept Right (Remote)" },
-
+      
+      { "<leader>gh", ":diffget //2<cr>", mode = { "n", "v" }, desc = "Git Accept Left (Local)" },
+      { "<leader>gl", ":diffget //3<cr>", mode = { "n", "v" }, desc = "Git Accept Right (Remote)" },
     }
   },
 

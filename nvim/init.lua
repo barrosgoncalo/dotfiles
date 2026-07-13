@@ -101,6 +101,7 @@ vim.keymap.set("i", "souf<Tab>", 'System.out.printf();<Left><Left>')
 
 vim.api.nvim_create_user_command('Scratch', function()
     vim.cmd('vnew')
+
     vim.bo.buftype = 'nofile'
     vim.bo.bufhidden = 'hide'
     vim.bo.swapfile = false

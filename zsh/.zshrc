@@ -29,3 +29,11 @@ export PATH="$JAVA_HOME/bin:$PATH"
 
 # Visuals
 neofetch
+eval "$(starship init zsh)"
+
+# Rugby
+eval "$(rbenv init -)"
+
+export ANDROID_HOME=$HOME/Library/Android/sdk
+export PATH=$PATH:$ANDROID_HOME/emulator
+export PATH=$PATH:$ANDROID_HOME/platform-tools
