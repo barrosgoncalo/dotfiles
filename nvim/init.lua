@@ -99,16 +99,37 @@ vim.keymap.set("i", "sout<Tab>", 'System.out.println();<Left><Left>')
 vim.keymap.set("i", "souf<Tab>", 'System.out.printf();<Left><Left>')
 
 
-vim.api.nvim_create_user_command('Scratch', function()
-    vim.cmd('vnew')
+local scratch_file = vim.fn.stdpath("data") .. "/.scratch"
+local ft_file = vim.fn.stdpath("data") .. "/.scratch_ft"
 
-    vim.bo.buftype = 'nofile'
-    vim.bo.bufhidden = 'hide'
+vim.api.nvim_create_user_command("Scratch", function(opts)
+    vim.fn.mkdir(vim.fn.fnamemodify(scratch_file, ":h"), "p")
+    vim.cmd("edit " .. vim.fn.fnameescape(scratch_file))
+
+    vim.bo.bufhidden = "hide"
     vim.bo.swapfile = false
 
-    pcall(vim.api.nvim_buf_set_name, 0, "*Scratchpad*")
+    if opts.args ~= "" then
+        vim.bo.filetype = opts.args
+        vim.fn.writefile({ opts.args }, ft_file)
+    elseif vim.fn.filereadable(ft_file) == 1 then
+        local ft = vim.fn.readfile(ft_file)[1]
+        if ft and ft ~= "" then
+            vim.bo.filetype = ft
+        end
+    end
+end, {
+    nargs = "?",
+    complete = "filetype",
+})
 
-    print("Persistent scratch buffer created!")
+vim.api.nvim_create_user_command("Reveal", function()
+  local path = vim.fn.expand("%:p")
+  if path == "" then
+    vim.notify("No file to reveal", vim.log.levels.WARN)
+    return
+  end
+  vim.fn.system({ "open", "-R", path })
 end, {})
 
 -- ----------------------------------------------------------------------------------------------------------------------------------------------
