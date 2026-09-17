@@ -1,15 +1,11 @@
 -- ----------------------------------------------------------------------------------------------------------------------------------------------
--- Leader Key
+-- Leader Key (must be set before lazy.setup)
 -- ----------------------------------------------------------------------------------------------------------------------------------------------
 vim.g.mapleader = " "
-
-vim.keymap.set('n', '<leader>tt', ':tabnew | term<CR>', { desc = 'Terminal in new tab' })
 
 -- ----------------------------------------------------------------------------------------------------------------------------------------------
 -- BOOTSTRAP Lazy.nvim
 -- ----------------------------------------------------------------------------------------------------------------------------------------------
-
--- 1. Download and setup the 'lazy.nvim' plugin manager
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
     vim.fn.system({
@@ -17,127 +13,26 @@ if not vim.loop.fs_stat(lazypath) then
         "clone",
         "--filter=blob:none",
         "https://github.com/folke/lazy.nvim.git",
-        "--branch=stable", -- latest stable release
+        "--branch=stable",
         lazypath,
     })
 end
 vim.opt.rtp:prepend(lazypath)
 
 -- ----------------------------------------------------------------------------------------------------------------------------------------------
--- Plugins 
+-- Plugins
 -- ----------------------------------------------------------------------------------------------------------------------------------------------
 require("lazy").setup("plugins")
 
 -- ----------------------------------------------------------------------------------------------------------------------------------------------
--- Editor Setting
+-- Core Config
 -- ----------------------------------------------------------------------------------------------------------------------------------------------
+require("config.options")
+require("config.keymaps")
+require("config.filetype")
+require("config.commands")
+require("config.env")
 
---Turn on the theme
+-- Theme (needs colorscheme loaded via lazy first, so after plugins setup)
 vim.o.background = "dark"
 vim.cmd([[colorscheme gruvbox]])
-
---Show line numbers
-vim.opt.number = true
---Show line relative numbers
-vim.opt.relativenumber = true
-
---Indentation
--- spaces a <Tab> counts
-vim.opt.tabstop = 4
-
--- spaces for (auto)indent
-vim.opt.shiftwidth = 4
-
--- Convert tabs to spaces
-vim.opt.expandtab = true
-
--- Backspace delete 4 spaces at once
-vim.opt.softtabstop = 4
-
--- Copy indentation from the previous line when starting a new line
-vim.opt.autoindent = true
-
-vim.opt.smartindent = true
-
--- Language Indentation Specific Overrides
--- PEP 8 double-indent override(python)
-vim.g.python_indent = {
-    open_paren = 'shiftwidth()',
-    continue = 'shiftwidth()',
-    closed_paren_align_last_line = false,
-}
-
-
--- Easy Window Navigation
--- vim.keymap.set("n", "<C-h>", "<C-w>h", { desc = "Go to Left Window" })
--- vim.keymap.set("n", "<C-j>", "<C-w>j", { desc = "Go to Lower Window" })
--- vim.keymap.set("n", "<C-k>", "<C-w>k", { desc = "Go to Upper Window" })
--- vim.keymap.set("n", "<C-l>", "<C-w>l", { desc = "Go to Right Window" })
-
--- Mouse and Arrow keys disable
-vim.opt.mouse = ""
-vim.keymap.set("", "<up>", "<nop>", { noremap = true })
-vim.keymap.set("", "<down>", "<nop>", { noremap = true })
-vim.keymap.set("", "<left>", "<nop>", { noremap = true })
-vim.keymap.set("", "<right>", "<nop>", { noremap = true })
-vim.keymap.set("i", "<up>", "<nop>", { noremap = true })
-vim.keymap.set("i", "<down>", "<nop>", { noremap = true })
-vim.keymap.set("i", "<left>", "<nop>", { noremap = true })
-vim.keymap.set("i", "<right>", "<nop>", { noremap = true })
-
--- Spell checking
-vim.opt.spell = true
--- Set language
-vim.opt.spelllang = { 'en_us', 'pt_pt' }
-
-
-vim.env.PATH = vim.env.PATH .. ":/Library/TeX/texbin"
-vim.env.PATH = vim.env.PATH .. ":/opt/homebrew/bin:/usr/local/bin"
-
--- Abbreviations __
-vim.keymap.set("i", "sout<Tab>", 'System.out.println();<Left><Left>')
-vim.keymap.set("i", "souf<Tab>", 'System.out.printf();<Left><Left>')
-
-
-local scratch_file = vim.fn.stdpath("data") .. "/.scratch"
-local ft_file = vim.fn.stdpath("data") .. "/.scratch_ft"
-
-vim.api.nvim_create_user_command("Scratch", function(opts)
-    vim.fn.mkdir(vim.fn.fnamemodify(scratch_file, ":h"), "p")
-    vim.cmd("edit " .. vim.fn.fnameescape(scratch_file))
-
-    vim.bo.bufhidden = "hide"
-    vim.bo.swapfile = false
-
-    if opts.args ~= "" then
-        vim.bo.filetype = opts.args
-        vim.fn.writefile({ opts.args }, ft_file)
-    elseif vim.fn.filereadable(ft_file) == 1 then
-        local ft = vim.fn.readfile(ft_file)[1]
-        if ft and ft ~= "" then
-            vim.bo.filetype = ft
-        end
-    end
-end, {
-    nargs = "?",
-    complete = "filetype",
-})
-
-vim.api.nvim_create_user_command("Reveal", function()
-  local path = vim.fn.expand("%:p")
-  if path == "" then
-    vim.notify("No file to reveal", vim.log.levels.WARN)
-    return
-  end
-  vim.fn.system({ "open", "-R", path })
-end, {})
-
--- ----------------------------------------------------------------------------------------------------------------------------------------------
--- Filetype Associations (Custom Highlight Rules)
--- ----------------------------------------------------------------------------------------------------------------------------------------------
-vim.filetype.add({
-  filename = {
-    ['firestore.rules'] = 'javascript',
-    ['storage.rules'] = 'javascript',
-  },
-})
