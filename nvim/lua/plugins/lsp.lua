@@ -91,7 +91,7 @@ return {
 
         vim.lsp.config("ocamllsp", {
             capabilities = capabilities,
-            settings = {},
+            cmd = { vim.fn.expand("~/.opam/ocaml-lsp-tools/bin/ocamllsp") },
         })
 
         -- enable
