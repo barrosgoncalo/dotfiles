@@ -37,3 +37,7 @@ eval "$(rbenv init -)"
 export ANDROID_HOME=$HOME/Library/Android/sdk
 export PATH=$PATH:$ANDROID_HOME/emulator
 export PATH=$PATH:$ANDROID_HOME/platform-tools
+
+function mkcd() {
+  mkdir -p "$@" && cd "$_"
+}
