@@ -89,6 +89,11 @@ return {
             },
         })
 
+        vim.lsp.config("ocamllsp", {
+            capabilities = capabilities,
+            settings = {},
+        })
+
         -- enable
         vim.lsp.enable("lua_ls")
         vim.lsp.enable("jdtls")
@@ -96,6 +101,7 @@ return {
         vim.lsp.enable("ts_ls")
         vim.lsp.enable("pylsp")
         vim.lsp.enable("lemminx")
+        vim.lsp.enable("ocamllsp")
 
         vim.diagnostic.config({
             virtual_text = true,
