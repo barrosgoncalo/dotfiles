@@ -41,3 +41,21 @@ export PATH=$PATH:$ANDROID_HOME/platform-tools
 function mkcd() {
   mkdir -p "$@" && cd "$_"
 }
+
+# Mail functions
+mailprof() {
+    pbcopy < ~/Templates/Mail/professor_pt.txt
+}
+
+mailprofen() {
+    pbcopy < ~/Templates/Mail/professor_en.txt
+}
+
+mailproffromal() {
+    pbcopy < ~/Templates/Mail/professor_formal_pt.txt
+}
+
+mailproffromalen() {
+    pbcopy < ~/Templates/Mail/professor_formal_en.txt
+}
+
