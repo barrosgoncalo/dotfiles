@@ -42,7 +42,10 @@ function mkcd() {
   mkdir -p "$@" && cd "$_"
 }
 
-# Mail functions
+# # Mail templates
+# Copies frequently used email templates to the macOS clipboard.
+# Templates are stored separately in ~/Templates/Mail so they can
+# be edited without modifying the dotfiles repository.
 mailprof() {
     pbcopy < ~/Templates/Mail/professor_pt.txt
 }
