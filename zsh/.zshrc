@@ -62,3 +62,12 @@ mailproffromalen() {
     pbcopy < ~/Templates/Mail/professor_formal_en.txt
 }
 
+# Azure CLI completion
+#
+# Homebrew installs Azure CLI's Bash completion script in its
+# bash_completion.d directory. Since this shell uses Zsh, initialize
+# Bash completion compatibility before sourcing the Azure CLI completion.
+#
+# Required for `az <TAB>` command completion in Zsh.
+autoload bashcompinit && bashcompinit
+source $(brew --prefix)/etc/bash_completion.d/az
