@@ -94,6 +94,11 @@ return {
             cmd = { vim.fn.expand("~/.opam/ocaml-lsp-tools/bin/ocamllsp") },
         })
 
+        vim.lsp.config("sqlls", {
+            capabilities = capabilities,
+            filetypes = { "sql", "mysql" },
+        })
+
         -- enable
         vim.lsp.enable("lua_ls")
         vim.lsp.enable("jdtls")
@@ -102,6 +107,7 @@ return {
         vim.lsp.enable("pylsp")
         vim.lsp.enable("lemminx")
         vim.lsp.enable("ocamllsp")
+        vim.lsp.enable("sqlls")
 
         vim.diagnostic.config({
             virtual_text = true,
