@@ -1,4 +1,4 @@
---Show line numbers
+--Show line numbe
 vim.opt.number = true
 vim.opt.relativenumber = true
 
@@ -23,3 +23,6 @@ vim.opt.mouse = ""
 -- Spell checking
 vim.opt.spell = true
 vim.opt.spelllang = { 'en_us', 'pt_pt' }
+
+-- Scroll velocity
+vim.opt.scroll = 2
