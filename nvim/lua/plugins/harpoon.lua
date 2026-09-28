@@ -12,6 +12,10 @@ return {
     keymap("n", "<leader>a", function() harpoon:list():add() end,
       { desc = "Harpoon: Add file" })
 
+    -- Remove current file to the harpoon list
+    keymap("n", "<leader>d", function() harpoon:list():remove() end,
+    { desc = "Harpoon: Remove file" })
+
     -- Toggle the quick-menu (shows/edits/reorders the harpoon list)
     keymap("n", "<C-e>", function() harpoon.ui:toggle_quick_menu(harpoon:list()) end,
       { desc = "Harpoon: Toggle quick menu" })
