@@ -13,3 +13,11 @@ vim.keymap.set("i", "<right>", "<nop>", { noremap = true })
 -- Abbreviations
 vim.keymap.set("i", "sout<Tab>", 'System.out.println();<Left><Left>')
 vim.keymap.set("i", "souf<Tab>", 'System.out.printf();<Left><Left>')
+
+-- TODO
+--Drag lines
+vim.keymap.set("n", "<A-k>", ":m .-2<CR>==")
+vim.keymap.set("n", "<A-j>", ":m .+1<CR>==")
+
+vim.keymap.set("v", "<A-k>", ":m '<-2<CR>gv=gv")
+vim.keymap.set("v", "<A-j>", ":m '>+1<CR>gv=gv")
