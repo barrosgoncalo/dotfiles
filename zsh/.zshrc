@@ -54,11 +54,11 @@ mailprofen() {
     pbcopy < ~/Templates/Mail/professor_en.txt
 }
 
-mailproffromal() {
+mailprofformal() {
     pbcopy < ~/Templates/Mail/professor_formal_pt.txt
 }
 
-mailproffromalen() {
+mailprofformalen() {
     pbcopy < ~/Templates/Mail/professor_formal_en.txt
 }
 
