@@ -26,7 +26,16 @@ return {
 
         vim.lsp.config("jdtls", {
             capabilities = capabilities,
-            settings = {},
+            root_dir = function(bufnr, on_dir)
+                local root = vim.fs.root(bufnr, { ".git", "mvnw", "gradlew", "pom.xml", "build.gradle" })
+                or vim.fn.getcwd()
+                on_dir(root)
+            end,
+            settings = {
+                java = {
+                    autobuild = { enabled = true },
+                },
+            },
         })
 
         vim.lsp.config("ts_ls", {
