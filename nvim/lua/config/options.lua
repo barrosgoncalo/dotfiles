@@ -25,4 +25,4 @@ vim.opt.spell = true
 vim.opt.spelllang = { 'en_us', 'pt_pt' }
 
 -- Scroll velocity
-vim.opt.scroll = 2
+-- vim.opt.scroll = 2
