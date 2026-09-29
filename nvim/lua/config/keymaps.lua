@@ -21,3 +21,7 @@ vim.keymap.set("n", "<A-j>", ":m .+1<CR>==")
 
 vim.keymap.set("v", "<A-k>", ":m '<-2<CR>gv=gv")
 vim.keymap.set("v", "<A-j>", ":m '>+1<CR>gv=gv")
+
+-- Scrolling
+vim.keymap.set("n", "<C-d>", "2<C-d>")
+vim.keymap.set("n", "<C-u>", "2<C-u>")
