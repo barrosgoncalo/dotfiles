@@ -27,7 +27,7 @@ return {
         vim.lsp.config("jdtls", {
             capabilities = capabilities,
             root_dir = function(bufnr, on_dir)
-                local root = vim.fs.root(bufnr, { ".git", "mvnw", "gradlew", "pom.xml", "build.gradle" })
+                local root = vim.fs.root(bufnr, { ".project", ".classpath", ".git", "mvnw", "gradlew", "pom.xml", "build.gradle" })
                 or vim.fn.getcwd()
                 on_dir(root)
             end,
