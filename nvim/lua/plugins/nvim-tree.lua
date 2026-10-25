@@ -39,6 +39,7 @@ return {
 
       require("nvim-tree").setup({
         on_attach = on_attach,
+        filesystem_watchers = { enable = true },
 
         view = {
           width = 30,
@@ -54,7 +55,6 @@ return {
             "\\.class$",
             "\\.iml$",
             "\\.DS_Store",
-            "^out$",
             "^target$",
             "^%.idea$",
           },
