@@ -14,18 +14,17 @@ return {
     },
 
     config = function()
-        local capabilities = require("blink.cmp").get_lsp_capabilities()
+        vim.lsp.config("*", {
+            capabilities = require("blink.cmp").get_lsp_capabilities(),
+        })
 
-        -- configs
         vim.lsp.config("lua_ls", {
-            capabilities = capabilities,
             settings = {
                 Lua = {},
             },
         })
 
         vim.lsp.config("jdtls", {
-            capabilities = capabilities,
             root_dir = function(bufnr, on_dir)
                 local root = vim.fs.root(bufnr, { ".project", ".classpath", ".git", "mvnw", "gradlew", "pom.xml", "build.gradle" })
                 or vim.fn.getcwd()
@@ -38,12 +37,7 @@ return {
             },
         })
 
-        vim.lsp.config("ts_ls", {
-            capabilities = capabilities,
-        })
-
         vim.lsp.config("pylsp", {
-            capabilities = capabilities,
             settings = {
                 pylsp = {
                     plugins = {
@@ -77,12 +71,7 @@ return {
             },
         })
 
-        vim.lsp.config("bufls", {
-            capabilities = capabilities,
-        })
-
         vim.lsp.config("lemminx", {
-            capabilities = capabilities,
             filetypes = { "xml", "xsd", "xsl", "xslt", "svg", "xacml" },
             settings = {
                 xml = {
@@ -99,12 +88,10 @@ return {
         })
 
         vim.lsp.config("ocamllsp", {
-            capabilities = capabilities,
             cmd = { vim.fn.expand("~/.opam/ocaml-lsp-tools/bin/ocamllsp") },
         })
 
         vim.lsp.config("sqlls", {
-            capabilities = capabilities,
             filetypes = { "sql", "mysql" },
         })
 
@@ -124,16 +111,35 @@ return {
             underline = true,
         })
 
-        vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action,
-        { desc = "Code Actions" })
+        vim.api.nvim_create_autocmd("LspAttach", {
+            group = vim.api.nvim_create_augroup("user-lsp-attach", { clear = true }),
+            callback = function(event)
+                local map = function(keys, fn, desc)
+                    vim.keymap.set("n", keys, fn, { buffer = event.buf, desc = desc })
+                end
+                local builtin = function(name, opts)
+                    return function() require("telescope.builtin")[name](opts) end
+                end
 
-        vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename,
-        { desc = "LSP Rename" })
+                -- actions
+                map("<leader>ca", vim.lsp.buf.code_action, "Code Actions")
+                map("<leader>rn", vim.lsp.buf.rename, "LSP Rename")
+                map("K", vim.lsp.buf.hover, "LSP Hover Documentation")
 
-        vim.keymap.set("n", "K", vim.lsp.buf.hover,
-        { desc = "LSP Hover Documentation" })
+                -- navigation (Telescope)
+                map("gd", builtin("lsp_definitions"), "Goto Definition")
+                map("gr", builtin("lsp_references"), "Goto References")
+                map("gi", builtin("lsp_implementations"), "Goto Implementation")
 
-        vim.keymap.set("n", "<leader>e", vim.diagnostic.open_float,
-        { desc = "Show Line Diagnostics" })
+                -- symbols (Telescope)
+                map("<leader>ds", builtin("lsp_document_symbols"), "Document Symbols")
+                map("<leader>dm", builtin("lsp_document_symbols",
+                { symbols = { "method", "constructor", "function" } }), "Document Methods")
+                map("<leader>ws", builtin("lsp_dynamic_workspace_symbols"), "Workspace Symbols")
+            end,
+        })
+
+        -- diagnostics can exist without an LSP, so this one stays global
+        vim.keymap.set("n", "<leader>e", vim.diagnostic.open_float, { desc = "Show Line Diagnostics" })
     end,
 }
