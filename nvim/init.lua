@@ -2,6 +2,7 @@
 -- Leader Key (must be set before lazy.setup)
 -- ----------------------------------------------------------------------------------------------------------------------------------------------
 vim.g.mapleader = " "
+vim.g.maplocalleader = "\\"
 
 -- ----------------------------------------------------------------------------------------------------------------------------------------------
 -- BOOTSTRAP Lazy.nvim
@@ -19,10 +20,24 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
+
 -- ----------------------------------------------------------------------------------------------------------------------------------------------
 -- Plugins
 -- ----------------------------------------------------------------------------------------------------------------------------------------------
 require("lazy").setup("plugins")
+
+vim.api.nvim_create_autocmd("FileType", {
+    pattern = "tex",
+    callback = function(ev)
+        vim.schedule(function()
+            if not vim.api.nvim_buf_is_valid(ev.buf) then return end
+            vim.api.nvim_buf_call(ev.buf, function()
+                vim.fn["vimtex#init"]()
+                vim.cmd("runtime! indent/tex.vim")
+            end)
+        end)
+    end,
+})
 
 -- ----------------------------------------------------------------------------------------------------------------------------------------------
 -- Core Config
