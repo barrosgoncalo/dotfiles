@@ -30,6 +30,7 @@ return {
             "vimdoc",
             "query",
             "latex",
+            "typst",
             "xml",
         })
 
@@ -43,6 +44,7 @@ return {
                 "typescript",
                 "typescriptreact",
                 "lua",
+                "typst",
                 "vim",
                 "vimdoc",
                 "query",
