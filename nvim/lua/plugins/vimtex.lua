@@ -8,6 +8,7 @@ return {
         -- tag = "v2.15", -- uncomment to pin to a specific release
         init = function()
             vim.g.vimtex_view_method = "skim"
+            vim.g.vimtex_quickfix_open_on_warning = 0
             -- manage build auxiliary folders
             vim.g.vimtex_compiler_latexmk = {
                 options = {
