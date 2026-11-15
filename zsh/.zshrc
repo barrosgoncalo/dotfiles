@@ -34,6 +34,9 @@ eval "$(starship init zsh)"
 # Rugby
 eval "$(rbenv init -)"
 
+# Rust (brew rustup + cargo-installed tools)
+export PATH="/opt/homebrew/opt/rustup/bin:$HOME/.cargo/bin:$PATH"
+
 export ANDROID_HOME=$HOME/Library/Android/sdk
 export PATH=$PATH:$ANDROID_HOME/emulator
 export PATH=$PATH:$ANDROID_HOME/platform-tools
@@ -72,3 +75,19 @@ mailprofformalen() {
 autoload -Uz compinit
 compinit
 source "$(brew --prefix)/etc/bash_completion.d/az"
+
+ls() {
+    if [[ "$*" == *"-l"* ]]; then
+        for f in *(.N); do
+            if [[ "$f" == *.pdf ]]; then
+                pages=$(mdls -raw -name kMDItemNumberOfPages "$f")
+                command ls -lh "$f" | awk -v p="$pages" \
+                    '{print $0, p, "pages"}'
+            else
+                command ls -lh "$f"
+            fi
+        done
+    else
+        command ls "$@"
+    fi
+}

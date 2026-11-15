@@ -1,4 +1,3 @@
--- e.g. in config/filetype-specific keymaps for typst
 local typst_job = nil
 vim.keymap.set("n", "<localleader>ll", function()
     if typst_job then

@@ -32,6 +32,8 @@ return {
             "latex",
             "typst",
             "xml",
+            "yaml",
+            "bash"
         })
 
         vim.api.nvim_create_autocmd("FileType", {
@@ -49,6 +51,9 @@ return {
                 "vimdoc",
                 "query",
                 "xml",
+                "rust",
+                "yml",
+                "sh"
             },
             callback = function(args)
                 local lang_map = {

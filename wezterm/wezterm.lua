@@ -9,6 +9,8 @@ config.default_prog = { '/bin/zsh', '-l' }
 config.color_scheme = "GruvboxDark"
 -- config.color_scheme = "Gruvbox Material (Gogh)"
 
+config.term = "wez-nomargins"
+
 -- disable ligatures
 config.harfbuzz_features = { 'calt=0', 'clig=0', 'liga=0' }
 -- font
@@ -16,7 +18,7 @@ config.font = wezterm.font("JetBrainsMono Nerd Font")
 -- disable tab bar
 config.enable_tab_bar = false
 -- font size
-config.font_size = 14.0
+config.font_size = 17.0
 
 -- keys
 config.use_dead_keys = false

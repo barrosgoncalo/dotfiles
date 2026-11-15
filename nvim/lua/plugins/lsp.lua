@@ -102,8 +102,12 @@ return {
         vim.lsp.enable("ts_ls")
         vim.lsp.enable("pylsp")
         vim.lsp.enable("lemminx")
+        vim.lsp.enable("tinymist")
         vim.lsp.enable("ocamllsp")
         vim.lsp.enable("sqlls")
+        vim.lsp.enable("rust_analyzer")
+        vim.lsp.enable("yamlls")
+        vim.lsp.enable("bashls")
 
         vim.diagnostic.config({
             virtual_text = true,
@@ -118,7 +122,7 @@ return {
                     vim.keymap.set("n", keys, fn, { buffer = event.buf, desc = desc })
                 end
                 local builtin = function(name, opts)
-                    return function() require("telescope.builtin")[name](opts) end
+                    return function() require("telescope.builtin")[name](vim.deepcopy(opts)) end
                 end
 
                 -- actions

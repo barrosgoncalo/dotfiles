@@ -10,6 +10,9 @@ return {
         { '<leader>ff', function() require('telescope.builtin').find_files() end, desc = 'Find Files' },
         { '<leader>fg', function() require('telescope.builtin').live_grep() end,  desc = 'Search inside Files' },
         { '<leader>fb', function() require('telescope.builtin').buffers() end,    desc = 'Find Buffers' },
+        { '<leader>fr', function() require('telescope.builtin').lsp_references() end,     desc = 'Find References' },
+        { '<leader>fi', function() require('telescope.builtin').lsp_incoming_calls() end, desc = 'Find Incoming Calls' },
+        { '<leader>fo', function() require('telescope.builtin').lsp_outgoing_calls() end, desc = 'Find Outgoing Calls' },
         { '<leader>z',
         function()
             require('telescope.builtin').spell_suggest(require('telescope.themes').get_cursor({}))
